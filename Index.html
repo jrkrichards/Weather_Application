@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather_Application</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body style="background-color: white" class="d-flex flex-column">
+    <!-- Start of the Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
+      <span class="navbar-brand mb-1 h1">Weather Dashboard</span>
+    </nav>
+    <!-- End Nav -->
+
+    <!-- Start of Content Container -->
+    <div id="page-content">
+      <div class="p-5 container text-center" class="top-buffer">
+        <!-- Start of Row 1 -->
+        <main class="row">
+          <div class="col-md-5">
+            <div class="card mt-2">
+              <div class="card-body">
+                <h1 class="border-bottom border-dark">Pick a City</h1>
+                <div class="row">
+                  <summary class="col-md-12 text-left">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="search for a city">
+                        <div class="input-group-append">
+                          <button class="btn btn-outline-secondary btn btn-outline-info" type="button" id="search_button">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                              </svg>
+                          </button>
+                        </div>
+                      </div>
+                    <img
+                      src="http://placehold.it/250x250"
+                      alt="Placeholder"
+                      class="img-thumbnail mx-3"
+                      align="left"
+                    />
+                    <p>
+                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                      Vero repudiandae soluta animi magni, amet voluptatibus
+                      expedita! Cumque consectetur facilis porro id, magnam
+                      harum, ipsa dolore totam in, laborum mollitia vero! Lorem
+                      ipsum dolor sit amet, consectetur adipisicing elit.
+                      Repellendus inventore accusantium corrupti hic neque
+                      minima esse velit sit? Id non, ut odit est dolore
+                      repudiandae. Fugit explicabo ad dolor debitis? Lorem ipsum
+                      dolor sit amet consectetur adipisicing elit. Facere nemo
+                      provident qui at maiores? Impedit minus optio, laborum
+                      molestiae repellendus error quos. Temporibus eius
+                      explicabo eos numquam,
+                    </p>
+                  </summary>
+                </div>
+              </div>
+            </div>
+          </div>
+          <aside class="col-md-7">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="card mt-2">
+                          <div class="card-body">
+                            <h1 class="border-bottom border-dark" id="city_name">CITY NAME
+                                <span class="current_date">DATE</span>
+                            </h1>
+                            <ul class="list-group list-group-flush text-left">
+                                <li class="list-group-item">Temperature:
+                                    <span id="temperature"></span>
+                                </li>
+                                <li class="list-group-item">Humidity:
+                                    <span id="humidity"></span>
+                                </li>
+                                <li class="list-group-item">Wind Speed:
+                                    <span id="wind_speed"></span>
+                                </li>
+                                <li class="list-group-item">UV Index:
+                                    <span id="uv_index"></span>
+                                </li>
+                            </ul>
+                          </div>
+                      </div>
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere ab praesentium corporis officiis necessitatibus eveniet eius quam voluptas, inventore nostrum amet nihil temporibus dolorem illo laudantium, deserunt, eligendi perspiciatis rerum.
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium dolores vitae quasi doloremque ad molestias natus inventore et. Error, atque. Impedit maiores deserunt debitis id iure voluptatem vitae illo nesciunt?
+                  </div>
+              </div>
+          </aside>
+        </main>
+        <!-- End of Row 1 -->
+      </div>
+    </div>
+    <!-- Start of Footer -->
+    <footer id="sticky-footer" class="py-4 bg-dark text-white">
+      <div class="container text-center">
+        <small>Copyright &copy; 2020</small>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
