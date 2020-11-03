@@ -6,6 +6,8 @@ const fDays = 5
 const citiesDisplayed = [
   "Las Vegas", "San Francisco", "Park City", "Tahoe", "Seattle", "Portland", "Honolulu", "Los Angeles"
 ]
+// localStorage["searchHistory"] = JSON.stringify(citiesDisplayed)
+const citiesSearch = JSON.parse(localStorage["searchHistory"]);
 
 // Retrieving APIs
 const getLocation = function (curCity) {
@@ -50,16 +52,44 @@ $( document ).ready(function() {
   console.log( "ready!" );
   curCity = "Las Vegas"
   getLocation(curCity);
-  for (let i = 0; i < citiesDisplayed.length; i++) {
-    $(`#recent_city_btn_${i}`).html(citiesDisplayed[i]);    
+  if (citiesSearch.length === 0) {
+    for (let i = 0; i < citiesDisplayed.length; i++) {
+      $(`#recent_city_btn_${i}`).html(citiesDisplayed[i]);    
+    };
+    console.log("citiesDis")
   }
+  else {
+    for (let i = 0; i < citiesSearch.length; i++) {
+      $(`#recent_city_btn_${i}`).html(citiesSearch[i]);    
+    };
+    console.log("citiesSe")
+  };  
 });
+// ENDED HERE NEED TO FIGURE OUT HOW TO ADD HISTORY TO LOCAL STORAGE
+const adjustCities = function (curCity) {
+  console.log(citiesDisplayed)
+  function titleCase(string) {
+    var sentence = string.toLowerCase().split(" ");
+    for(var i = 0; i< sentence.length; i++){
+       sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+    };
+    console.log(sentence)
+    citiesDisplayed.splice(0, 0, sentence)
+    return sentence;
+  }
+  titleCase(curCity)
+  citiesDisplayed.pop()
+  console.log(citiesDisplayed)
+  localStorage["searchHistory"] = JSON.stringify(citiesDisplayed)
+};
+
 const getCoordinates = function (data, curCity) {
     console.log(data);
     let curCityLat = data.coord.lat;
     let curCityLon = data.coord.lon;
     let iconcode = data.weather[0].icon;
     let iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    var cityNameUse = data.name
     getCurrentWeather(curCityLat, curCityLon);
     $('#city_name').text(data.name + " (" + todayDate + ")");
     $('#cwicon').attr("src", iconurl);
@@ -86,22 +116,18 @@ const displayForecast = function (data) {
     $(`#forecast_${i}_hum`).text(data.daily[i].humidity + "%");
   }
 }
-// Adjusting HTML
 
 // EventListeners
 $(":button").click(function (event) {
     event.preventDefault();
     let currentId = $(this).attr("id");
-    console.log($(this).attr("id"));
     if(currentId === "search_button") {
         var curCity = $("#city_input").val();
-        console.log($("#city_input").val())
+        adjustCities(curCity);
     }
     else {
         var curCity = $(this).html();
-        console.log($(this).html());
     }
-    console.log(curCity);
     getLocation(curCity);
 
     // Need to add to storage so I can have the current cities lined up. Thinking of making an initial array that gets adjusted by the user
