@@ -22,19 +22,19 @@
 
     <!-- Start of Content Container -->
     <div id="page-content">
-      <div class="p-5 container text-center" class="top-buffer">
+      <div class="p-5 container text-center" class="top-buffer mh-100">
         <!-- Start of Row 1 -->
         <main class="row">
-          <div class="col-md-5">
+          <div class="col-md-3">
             <div class="card mt-2">
               <div class="card-body">
-                <h1 class="border-bottom border-dark">Pick a City</h1>
+                <h3 class="border-bottom border-dark">Pick a City</h3>
                 <div class="row">
                   <summary class="col-md-12 text-left">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="search for a city">
+                        <input type="text" class="form-control" placeholder="search for a city" id="city_input">
                         <div class="input-group-append">
-                          <button class="btn btn-outline-secondary btn btn-outline-info" type="button" id="search_button">
+                          <button class="btn btn btn-outline-info" type="button" id="search_button">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
                                 <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
@@ -42,61 +42,141 @@
                           </button>
                         </div>
                       </div>
-                    <img
-                      src="http://placehold.it/250x250"
-                      alt="Placeholder"
-                      class="img-thumbnail mx-3"
-                      align="left"
-                    />
-                    <p>
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Vero repudiandae soluta animi magni, amet voluptatibus
-                      expedita! Cumque consectetur facilis porro id, magnam
-                      harum, ipsa dolore totam in, laborum mollitia vero! Lorem
-                      ipsum dolor sit amet, consectetur adipisicing elit.
-                      Repellendus inventore accusantium corrupti hic neque
-                      minima esse velit sit? Id non, ut odit est dolore
-                      repudiandae. Fugit explicabo ad dolor debitis? Lorem ipsum
-                      dolor sit amet consectetur adipisicing elit. Facere nemo
-                      provident qui at maiores? Impedit minus optio, laborum
-                      molestiae repellendus error quos. Temporibus eius
-                      explicabo eos numquam,
-                    </p>
+                      <ul class="list-group text-left">
+                        <button class="list-group-item text-left btn btn-outline-secondary" type="button" id="recent_city_btn_0">
+                          City Placeholder 1                   
+                        </button>
+                        <button class="list-group-item text-left btn btn-outline-secondary" type="button" id="recent_city_btn_1">
+                          City Placeholder 2                
+                        </button>
+                        <button class="list-group-item text-left btn btn-outline-secondary" type="button" id="recent_city_btn_2">
+                          City Placeholder 3                  
+                        </button>
+                        <button class="list-group-item text-left btn btn-outline-secondary" type="button" id="recent_city_btn_3">
+                          City Placeholder 4                    
+                        </button>
+                        <button class="list-group-item text-left btn btn-outline-secondary" type="button" id="recent_city_btn_4">
+                          City Placeholder 5                    
+                        </button>
+                        <button class="list-group-item text-left btn btn-outline-secondary" type="button" id="recent_city_btn_5">
+                          City Placeholder 6                    
+                        </button>
+                        <button class="list-group-item text-left btn btn-outline-secondary" type="button" id="recent_city_btn_6">
+                          City Placeholder 7                    
+                        </button>
+                        <button class="list-group-item text-left btn btn-outline-secondary" type="button" id="recent_city_btn_7">
+                          City Placeholder 8                   
+                        </button>
+                    </ul>
                   </summary>
                 </div>
               </div>
             </div>
           </div>
-          <aside class="col-md-7">
+          <aside class="col-md-9">
               <div class="row">
                   <div class="col-md-12">
                       <div class="card mt-2">
                           <div class="card-body">
-                            <h1 class="border-bottom border-dark" id="city_name">CITY NAME
-                                <span class="current_date">DATE</span>
-                            </h1>
+                            <h3 class="border-bottom border-dark">
+                              <span id="city_name">City Name</span>
+                              <img id="cwicon" src="" alt="Weather icon">
+                            </h3>
                             <ul class="list-group list-group-flush text-left">
                                 <li class="list-group-item">Temperature:
-                                    <span id="temperature"></span>
+                                    <span id="ctemperature"></span>
                                 </li>
                                 <li class="list-group-item">Humidity:
-                                    <span id="humidity"></span>
+                                    <span id="chumidity"></span>
                                 </li>
                                 <li class="list-group-item">Wind Speed:
-                                    <span id="wind_speed"></span>
+                                    <span id="cwind_speed"></span>
                                 </li>
                                 <li class="list-group-item">UV Index:
-                                    <span id="uv_index"></span>
+                                    <span id="cuv_index"></span>
                                 </li>
                             </ul>
                           </div>
                       </div>
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere ab praesentium corporis officiis necessitatibus eveniet eius quam voluptas, inventore nostrum amet nihil temporibus dolorem illo laudantium, deserunt, eligendi perspiciatis rerum.
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-12">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium dolores vitae quasi doloremque ad molestias natus inventore et. Error, atque. Impedit maiores deserunt debitis id iure voluptatem vitae illo nesciunt?
+                      <div class="card mt-2">
+                        <div class="card-body">
+                          <h3 class="border-bottom border-dark" id="city_name">
+                            5 Day Forecast
+                          </h3>
+                          <div class="row row-cols-1 row-cols-md-5" id="forecasts">
+                            <div class="col px-1">
+                              <div class="card h-100 text-white bg-info">
+                                <div class="card-body" id="forecast_0">
+                                  <h6 class="card-title" id="forecast_0_title">08/08/08</h6>
+                                  <img src="..." alt="forecast icon" class="bg-info" id="forecast_0_img"/>
+                                  <p class="card-text text-left small">Temp:
+                                    <span id="forecast_0_temp"></span>
+                                  </p>
+                                  <p class="card-text text-left small">Humidity:
+                                    <span id="forecast_0_hum"></span>
+                                  </p>                                    
+                                </div>
+                              </div>
+                            </div> 
+                            <div class="col px-1">
+                              <div class="card h-100 text-white bg-info">
+                                <div class="card-body" id="forecast_1">
+                                  <h6 class="card-title" id="forecast_1_title">08/08/08</h6>
+                                  <img src="..." alt="forecast icon" class="bg-info" id="forecast_1_img"/>
+                                  <p class="card-text text-left small">Temp:
+                                    <span id="forecast_1_temp"></span>
+                                  </p>
+                                  <p class="card-text text-left small">Humidity:
+                                    <span id="forecast_1_hum"></span>
+                                  </p>                                    
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col px-1">
+                              <div class="card h-100 text-white bg-info">
+                                <div class="card-body" id="forecast_2">
+                                  <h6 class="card-title" id="forecast_2_title">08/08/08</h6>
+                                  <img src="..." alt="forecast icon" class="bg-info" id="forecast_2_img"/>
+                                  <p class="card-text text-left small">Temp:
+                                    <span id="forecast_2_temp"></span>
+                                  </p>
+                                  <p class="card-text text-left small">Humidity:
+                                    <span id="forecast_2_hum"></span>
+                                  </p>                                    
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col px-1">
+                              <div class="card h-100 text-white bg-info">
+                                <div class="card-body" id="forecast_3">
+                                  <h6 class="card-title" id="forecast_3_title">08/08/08</h6>
+                                  <img src="..." alt="forecast icon" class="bg-info" id="forecast_3_img"/>
+                                  <p class="card-text text-left small">Temp:
+                                    <span id="forecast_3_temp"></span>
+                                  </p>
+                                  <p class="card-text text-left small">Humidity:
+                                    <span id="forecast_3_hum"></span>
+                                  </p>                                    
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col px-1">
+                              <div class="card h-100 text-white bg-info">
+                                <div class="card-body" id="forecast_4">
+                                  <h6 class="card-title" id="forecast_4_title">08/08/08</h6>
+                                  <img src="..." alt="forecast icon" class="bg-info" id="forecast_4_img"/>
+                                  <p class="card-text text-left small">Temp:
+                                    <span id="forecast_4_temp"></span>
+                                  </p>
+                                  <p class="card-text text-left small">Humidity:
+                                    <span id="forecast_4_hum"></span>
+                                  </p>                                    
+                                </div>
+                              </div>
+                            </div>
+                          </div>                                                    
+                        </div>
+                    </div>                  
                   </div>
               </div>
           </aside>
