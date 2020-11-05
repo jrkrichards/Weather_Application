@@ -50,8 +50,7 @@ const getCurrentWeather = function (curCityLat, curCityLon) {
 
 // Functions
 $( document ).ready(function() {
-  console.log( "ready!" );
-  curCity = citiesDisplayed[0]
+  curCity = citiesDisplayed[0];
   getLocation(curCity);
   if (citiesSearch.length === 0) {
     for (let i = 0; i < citiesDisplayed.length; i++) {
@@ -64,7 +63,7 @@ $( document ).ready(function() {
     };
   };  
 });
-// ENDED HERE NEED TO FIGURE OUT HOW TO ADD HISTORY TO LOCAL STORAGE
+
 const adjustCities = function (curCity) {
   console.log(citiesDisplayed)
   function titleCase(string) {
@@ -73,7 +72,6 @@ const adjustCities = function (curCity) {
        sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
     };
     sentence = sentence.join(' ')
-    console.log(sentence)
     citiesDisplayed.splice(0, 0, sentence)
     return sentence;
   }
@@ -87,7 +85,6 @@ const adjustCities = function (curCity) {
 };
 
 const getCoordinates = function (data, curCity) {
-    console.log(data);
     let curCityLat = data.coord.lat;
     let curCityLon = data.coord.lon;
     let iconcode = data.weather[0].icon;
@@ -100,11 +97,22 @@ const getCoordinates = function (data, curCity) {
 }
 
 const displayWeather = function (data) {
-  console.log(data)
   $('#ctemperature').text(data.current.temp + "° F")
   $('#chumidity').text(data.current.humidity + "%")
   $('#cwind_speed').text(data.current.wind_speed + " MPH")
   $('#cuv_index').text(data.current.uvi)
+  if(data.current.uvi >= 6) {
+    $('#cuv_index').css('background-color', 'red')
+    $('#cuv_index').css('color', 'white')
+  }
+  else if (data.current.uvi >= 3) {
+    $('#cuv_index').css('background-color', '#CCCC00')
+    $('#cuv_index').css('color', 'white')
+  }
+  else {
+    $('#cuv_index').css('background-color', 'green')
+    $('#cuv_index').css('color', 'white')
+  }
 }
 
 const displayForecast = function (data) {
@@ -132,7 +140,4 @@ $(":button").click(function (event) {
         var curCity = $(this).html();
     }
     getLocation(curCity);
-
-    // Need to add to storage so I can have the current cities lined up. Thinking of making an initial array that gets adjusted by the user
-    // localStorage.setItem(`${currentIndex}`, currentAppoint);
 });
