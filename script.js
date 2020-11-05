@@ -52,8 +52,14 @@ const getCurrentWeather = function (curCityLat, curCityLon) {
 $( document ).ready(function() {
   curCity = citiesDisplayed[0];
   getLocation(curCity);
+  console.log(citiesSearch.length)
   if (citiesSearch.length === 0) {
     for (let i = 0; i < citiesDisplayed.length; i++) {
+      console.log("check")
+      let startCities = [
+        "Las Vegas", "San Francisco", "Park City", "Tahoe", "Seattle", "Portland", "Honolulu", "Los Angeles"
+      ];
+      localStorage["searchHistory"] = JSON.stringify(startCities)
       $(`#recent_city_btn_${i}`).html(citiesDisplayed[i]);    
     };
   }
