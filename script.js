@@ -3,11 +3,12 @@
 // Variables for Scripts
 const todayDate = moment().format("MM/DD/YYYY");
 const fDays = 5
-const citiesDisplayed = [
+const citiesDisplayed = JSON.parse(localStorage["searchHistory"]) || [
   "Las Vegas", "San Francisco", "Park City", "Tahoe", "Seattle", "Portland", "Honolulu", "Los Angeles"
-]
-// localStorage["searchHistory"] = JSON.stringify(citiesDisplayed)
+];
+localStorage["searchHistory"] = JSON.stringify(citiesDisplayed)
 const citiesSearch = JSON.parse(localStorage["searchHistory"]);
+
 
 // Retrieving APIs
 const getLocation = function (curCity) {
@@ -50,19 +51,17 @@ const getCurrentWeather = function (curCityLat, curCityLon) {
 // Functions
 $( document ).ready(function() {
   console.log( "ready!" );
-  curCity = "Las Vegas"
+  curCity = citiesDisplayed[0]
   getLocation(curCity);
   if (citiesSearch.length === 0) {
     for (let i = 0; i < citiesDisplayed.length; i++) {
       $(`#recent_city_btn_${i}`).html(citiesDisplayed[i]);    
     };
-    console.log("citiesDis")
   }
   else {
     for (let i = 0; i < citiesSearch.length; i++) {
       $(`#recent_city_btn_${i}`).html(citiesSearch[i]);    
     };
-    console.log("citiesSe")
   };  
 });
 // ENDED HERE NEED TO FIGURE OUT HOW TO ADD HISTORY TO LOCAL STORAGE
@@ -73,14 +72,18 @@ const adjustCities = function (curCity) {
     for(var i = 0; i< sentence.length; i++){
        sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
     };
+    sentence = sentence.join(' ')
     console.log(sentence)
     citiesDisplayed.splice(0, 0, sentence)
     return sentence;
   }
   titleCase(curCity)
   citiesDisplayed.pop()
-  console.log(citiesDisplayed)
   localStorage["searchHistory"] = JSON.stringify(citiesDisplayed)
+  for (let i = 0; i < citiesDisplayed.length; i++) {
+    $(`#recent_city_btn_${i}`).html(citiesDisplayed[i]);   
+  };
+  $("#city_input").html("")
 };
 
 const getCoordinates = function (data, curCity) {
