@@ -1,9 +1,6 @@
-// Variables from HTML
-
 // Variables for Scripts
 const todayDate = moment().format("MM/DD/YYYY");
 const fDays = 5
-// localStorage["searchHistory"] = JSON.stringify(citiesDisplayed)
 
 // Retrieving APIs
 const getLocation = function (curCity) {
@@ -44,25 +41,21 @@ const getCurrentWeather = function (curCityLat, curCityLon) {
   };
 
 // Functions
+// Function to set up the application. This function checks if there is anything saved in localStorage. If there is then it will use what is in localStorage. If there isn't then it will default to the "startCities" array.
 $( document ).ready(function() {
   let startCities = [
     "Las Vegas", "San Francisco", "Park City", "Tahoe", "Seattle", "Portland", "Honolulu", "Los Angeles"
   ];
-  // localStorage["searchHistory"] = JSON.stringify(startCities)
-  console.log(window.localStorage.length)
-  // console.log(JSON.parse(localStorage.getItem("searchHistory")))
   if (window.localStorage.length === 0) {
     curCity = startCities[0];
     getLocation(curCity);
     for (let i = 0; i < startCities.length; i++) {
-      console.log("check")
       localStorage["searchHistory"] = JSON.stringify(startCities)
       $(`#recent_city_btn_${i}`).html(startCities[i]);    
     };
   }
   else {
     const citiesSearch = JSON.parse(localStorage["searchHistory"]);
-    console.log(citiesSearch.length)
     curCity = citiesSearch[0];
     getLocation(curCity);
     for (let i = 0; i < citiesSearch.length; i++) {
@@ -71,10 +64,9 @@ $( document ).ready(function() {
   };  
 });
 
+// Function to adjust the localStorage array for saved cities. This function also ensures the cities are in title case.
 const adjustCities = function (curCity) {
-  const citiesDisplayed = JSON.parse(localStorage["searchHistory"]) || [
-    "Las Vegas", "San Francisco", "Park City", "Tahoe", "Seattle", "Portland", "Honolulu", "Los Angeles"
-  ];
+  const citiesDisplayed = JSON.parse(localStorage["searchHistory"])
   function titleCase(string) {
     var sentence = string.toLowerCase().split(" ");
     for(var i = 0; i< sentence.length; i++){
