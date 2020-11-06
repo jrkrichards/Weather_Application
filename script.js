@@ -3,12 +3,7 @@
 // Variables for Scripts
 const todayDate = moment().format("MM/DD/YYYY");
 const fDays = 5
-const citiesDisplayed = JSON.parse(localStorage["searchHistory"]) || [
-  "Las Vegas", "San Francisco", "Park City", "Tahoe", "Seattle", "Portland", "Honolulu", "Los Angeles"
-];
-localStorage["searchHistory"] = JSON.stringify(citiesDisplayed)
-const citiesSearch = JSON.parse(localStorage["searchHistory"]);
-
+// localStorage["searchHistory"] = JSON.stringify(citiesDisplayed)
 
 // Retrieving APIs
 const getLocation = function (curCity) {
@@ -50,20 +45,26 @@ const getCurrentWeather = function (curCityLat, curCityLon) {
 
 // Functions
 $( document ).ready(function() {
-  curCity = citiesDisplayed[0];
-  getLocation(curCity);
-  console.log(citiesSearch.length)
-  if (citiesSearch.length === 0) {
-    for (let i = 0; i < citiesDisplayed.length; i++) {
+  let startCities = [
+    "Las Vegas", "San Francisco", "Park City", "Tahoe", "Seattle", "Portland", "Honolulu", "Los Angeles"
+  ];
+  // localStorage["searchHistory"] = JSON.stringify(startCities)
+  console.log(window.localStorage.length)
+  // console.log(JSON.parse(localStorage.getItem("searchHistory")))
+  if (window.localStorage.length === 0) {
+    curCity = startCities[0];
+    getLocation(curCity);
+    for (let i = 0; i < startCities.length; i++) {
       console.log("check")
-      let startCities = [
-        "Las Vegas", "San Francisco", "Park City", "Tahoe", "Seattle", "Portland", "Honolulu", "Los Angeles"
-      ];
       localStorage["searchHistory"] = JSON.stringify(startCities)
-      $(`#recent_city_btn_${i}`).html(citiesDisplayed[i]);    
+      $(`#recent_city_btn_${i}`).html(startCities[i]);    
     };
   }
   else {
+    const citiesSearch = JSON.parse(localStorage["searchHistory"]);
+    console.log(citiesSearch.length)
+    curCity = citiesSearch[0];
+    getLocation(curCity);
     for (let i = 0; i < citiesSearch.length; i++) {
       $(`#recent_city_btn_${i}`).html(citiesSearch[i]);    
     };
@@ -71,7 +72,9 @@ $( document ).ready(function() {
 });
 
 const adjustCities = function (curCity) {
-  console.log(citiesDisplayed)
+  const citiesDisplayed = JSON.parse(localStorage["searchHistory"]) || [
+    "Las Vegas", "San Francisco", "Park City", "Tahoe", "Seattle", "Portland", "Honolulu", "Los Angeles"
+  ];
   function titleCase(string) {
     var sentence = string.toLowerCase().split(" ");
     for(var i = 0; i< sentence.length; i++){
